@@ -1,0 +1,70 @@
+set nocompatible
+syntax on
+set wrap 
+filetype plugin indent on
+
+"################### styling ######################
+" row numbering
+set nu
+
+" set tabspace
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+"let g:syntastic_check_on_open=1
+"let g:syntastic_auto_jump=1
+
+"#################### vunlde: extension managing ####################  
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+" add all your plugins here (note older versions of Vundle
+" used Bundle instead of Plugin)
+
+Plugin 'gmarik/Vundle.vim' 	" let Vundle manage Vundle, required
+Plugin 'davidhalter/jedi-vim' 	" autocompletion for python
+Plugin 'scrooloose/nerdtree'    " file tree
+"Plugin 'scrooloose/syntastic'   " syntax checker 
+"Plugin 'Valloric/YouCompleteMe' " autocompletion (for C)
+
+call vundle#end()            
+
+
+"#################### python #################### 
+
+" start terminal and run pythonscript
+autocmd FileType python map <F1> :w<CR>:term python3 %<CR><c-w>w
+autocmd FileType python imap <F1> <esc>:w<CR>:term python3 %<CR><c-w>w
+"close terminal and run in new terminal 
+autocmd FileType python map <F4> <c-w>w:close<CR>:w<CR>:term python3 %<CR><c-w>w
+autocmd FileType python imap <F4> <esc><c-w>w:close<CR>:w<CR>:term python3 %<CR><c-w>w
+" close current split
+autocmd FileType python map <F2> :close<CR>
+" change split
+autocmd FileType python map <F3> <c-w>w
+
+"#### This works:)#####
+" start terminal and run pythonscript
+"map <F1> :w<CR>:term python3 %<CR><c-w>w  
+"imap <F1> <esc>:w<CR>:term python3 %<CR><c-w>w  
+"close terminal and run in new terminal 
+"map <F4> <c-w>w:close<CR>:w<CR>:term python3 %<CR><c-w>w  
+"imap <F4> <esc><c-w>w:close<CR>:w<CR>:term python3 %<CR><c-w>w
+" close current split
+"map <F2> :close<CR>
+" change split
+"map <F3> <c-w>w
+"######################
+
+"#################### Remaps ####################
+imap jj <Esc>
+
+
+"split navigations
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
+
