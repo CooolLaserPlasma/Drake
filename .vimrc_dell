@@ -1,0 +1,62 @@
+set nocompatible             
+filetype plugin indent on   
+
+"################## styling #######################
+" row numbering
+set nu
+" make indication for e fix rowlength
+"set textwidth=60
+"set ColorColumns=60
+"highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+
+" set tabspace
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" use UTF-8
+set encoding=utf-8
+
+"################## settings for YCM ##################
+" close documentation window automatically
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+"################## vundle: extension managing ##################
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" add all your plugins here (note older versions of Vundle
+" used Bundle instead of Plugin)
+
+Plugin 'gmarik/Vundle.vim' 	        " let Vundle manage Vundle
+Plugin 'Valloric/YouCompleteMe'     " autocompletion for python and C
+Plugin 'scrooloose/nerdtree'        " file tree
+
+call vundle#end()            
+
+
+"################# remaps ################
+
+imap jj <Esc>
+
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"### python ###
+" set maximal row length
+autocmd FileType python :set textwidth=80
+" start terminal and run pythonscript
+autocmd FileType python map <F3> :w<CR>:term python3 %<CR><c-w>w
+autocmd FileType python imap <F3> <esc>:w<CR>:term python3 %<CR><c-w>w
+"close terminal and run in new terminal 
+autocmd FileType python map <F4> <c-w>w:close<CR>:w<CR>:term python3 %<CR><c-w>w
+autocmd FileType python imap <F4> <esc><c-w>w:close<CR>:w<CR>:term python3 %<CR><c-w>w
+" close current split
+autocmd FileType python map <F1> :close<CR>
+" change split
+autocmd FileType python map <F2> <c-w>w
